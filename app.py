@@ -136,7 +136,7 @@ def login():
             session.clear()
             session["authenticated"] = True
             session["csrf"] = secrets.token_urlsafe(32)
-            session.permanent = True
+            session.permanent = False
             attempts.pop(ip, None)
             return redirect("/dashboard")
         attempts[ip].append(now)
