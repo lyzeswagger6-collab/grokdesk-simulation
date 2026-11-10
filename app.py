@@ -132,7 +132,7 @@ def login():
     if request.method == "POST":
         require_csrf()
         supplied = request.form.get("password", "")
-        if hmac.compare_digest(supplied, password):
+        if hmac.compare_digest(supplied.encode("utf-8"), password.encode("utf-8")):
             session.clear()
             session["authenticated"] = True
             session["csrf"] = secrets.token_urlsafe(32)
